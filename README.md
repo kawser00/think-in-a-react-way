@@ -1,71 +1,196 @@
-# Getting Started with Create React App
+<!-- PROJECT Title -->
+<br />
+<p align="center">
+  <h3 align="center"> Think in a React way</h3>
+</p>
+<!-- TABLE OF CONTENTS -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Linting Setup](#linting-setup)
+  - [Install Dev Dependencies](#install-dev-dependencies)
+  - [Create Linting Configuration file manually](#create-linting-configuration-file-manually)
+- [Editor Setup](#editor-setup)
 
-In the project directory, you can run:
+  - [Plugins](#plugins)
+  - [Settings](#settings)
+  - [Set Line Breaks](#set-line-breaks)
 
-### `yarn start`
+  <!-- Editor Setup -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Editor Setup
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You can use any editor but as I personally prefer VS Code. I will give some instructions about how I prefer VS code to be setup for React applications.
 
-### `yarn test`
+### Plugins
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You need to install the below plugins:
 
-### `yarn build`
+- ESLint by Dirk Baeumer
+- Prettier - Code formatter by Prettier
+- Learn with sumit Theme (optional)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Settings
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Go to vscode and open working file > click - settings > click - workspace > click(button) - open settings JSON (will found in the top right corner) > [file will be created]
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Follow the below settings for VS Code -
 
-### `yarn eject`
+1. Create a new folder called ".vscode" inside the project root folder
+2. Create a new file called "settings.json" inside that folder.
+3. Paste the below json in the newly created settings.json file and save the file.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```json
+{
+  // Theme
+  "workbench.colorTheme": "Learn with Sumit - Peace of the eye - Dracula version",
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  // config related to code formatting
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null
+  },
+  "javascript.validate.enable": false, //disable all built-in syntax checking
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.tslint": true,
+    "source.organizeImports": true
+  },
+  "eslint.alwaysShowStatus": true,
+  // emmet
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If you followed all previous steps, the theme should change and your editor should be ready.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Set Line Breaks
 
-## Learn More
+Make sure in your VS Code Editor, "LF" is selected as line feed instead of CRLF (Carriage return and line feed). To do that, just click LF/CRLF in bottom right corner of editor, click it and change it to "LF". If you dont do that, you will get errors in my setup.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="public/line-feed.jpg" alt="Line Feed" width="700">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  <!-- Linting Setup -->
 
-### Code Splitting
+## Linting Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+In order to lint and format your React project automatically according to popular airbnb style guide, I recommend you to follow the instructions below.
 
-### Analyzing the Bundle Size
+### Install Dev Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```sh
+yarn add -D prettier
+yarn add -D babel-eslint
+npx install-peerdeps --dev eslint-config-airbnb
+yarn add -D eslint-config-prettier eslint-plugin-prettier
+```
 
-### Making a Progressive Web App
+or You can also add a new script in the rect file, package.json scripts section like below to install everything with a single command:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```json
+scripts: {
+    "lint": "yarn add -D prettier && yarn add -D babel-eslint && npx install-peerdeps --dev eslint-config-airbnb && yarn add -D eslint-config-prettier eslint-plugin-prettier"
+}
+```
 
-### Advanced Configuration
+and then simply run the below command in the terminal -
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```sh
+yarn lint #or 'npm run lint'
+```
 
-### Deployment
+<!-- yarn start -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## yarn start
 
-### `yarn build` fails to minify
+if yarn start not working create .env file and add- ` SKIP_PREFLIGHT_CHECK=true`to ignore error, and then add in .gitignore file
+You may also need to be install- `yarn add eslint-config-react-app -D` if you getting error: "Failed to load config "react-app" to extend from."
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# think-in-a-react-way
+### Create Linting Configuration file manually
+
+Create a `.eslintrc` file manually in the project root or run command :
+
+## run command in yarn
+
+```sh
+touch .eslintrc
+```
+
+Then add the below contents:
+
+```json
+{
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "eslint:recommended",
+    "prettier",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "rules": {
+    "react/react-in-jsx-scope": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "no-console": 0,
+    "react/state-in-constructor": 0,
+    "indent": 0,
+    "linebreak-style": 0,
+    "react/prop-types": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 100,
+        "tabWidth": 4,
+        "semi": true,
+        "endOfLine": "auto"
+      }
+    ]
+  },
+  "plugins": ["prettier", "react", "react-hooks"]
+}
+```
+
+## If got error in eslint
+
+yarn add eslint --save-dev
+
+#### For airbnb:
+
+npx install-peerdeps --dev eslint-config-airbnb
+npm install -g install-peerdeps
+install-peerdeps --dev eslint-config-airbnb
+
+#### For prettier:
+
+yarn add eslint-config-prettier
+
+#### For babel-parser:
+
+yarn add eslint @babel/core @babel/eslint-parser -D
