@@ -179,7 +179,9 @@ Then add the below contents:
 
 ## If got error in eslint
 
+```sh
 yarn add eslint --save-dev
+```
 
 #### For airbnb:
 
@@ -191,8 +193,12 @@ install-peerdeps --dev eslint-config-airbnb
 
 #### For prettier:
 
+```sh
 yarn add eslint-config-prettier
+```
 
 #### For babel-parser:
 
+```sh
 yarn add eslint @babel/core @babel/eslint-parser -D
+```
