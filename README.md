@@ -183,9 +183,11 @@ yarn add eslint --save-dev
 
 #### For airbnb:
 
+```sh
 npx install-peerdeps --dev eslint-config-airbnb
 npm install -g install-peerdeps
 install-peerdeps --dev eslint-config-airbnb
+```
 
 #### For prettier:
 
